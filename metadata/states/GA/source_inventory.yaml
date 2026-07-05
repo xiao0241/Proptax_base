@@ -1,0 +1,32 @@
+state: GA
+sources:
+  - source_id: ga_dor_digest_consolidated_2002
+    source_agency: Georgia Department of Revenue (hosted by UGA Carl Vinson Institute, georgiadata.org)
+    source_title: "County Ad Valorem Tax Digest Consolidated Summaries, tax year 2002 (2002_digest.xlsx)"
+    source_url: "https://georgiadata.org/download/file/fid/146"
+    source_type: official_open_data_workbook
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "pandas read of sheet '2002 digest' (long format, one row per county x tax district); rows with txpyr-dist-did == 0 are the countywide county-government M&O district; tax-valAmt-mo = net M&O digest; statewide sum pinned in the extractor as a regression gate; sha256 pinned."
+    manual_download_required: false
+    local_path: data/raw/GA/2002/2002_digest.xlsx
+    sha256: "c9675363d1682c420e3abfe37abac6771ffeef776d6c28d227bc5041c9d0d2dd"
+    bytes: 1839500
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "The consolidated digest is county-aggregate by taxing district — district 0 is the countywide county-government M&O digest (not a sub-county aggregation). Identity gross digest - M&O exemptions = net M&O digest holds exactly for all 159 district-0 rows. Two district-0 rows carry mislabeled district names (Crisp, Forsyth) but equal the countywide incorporated+unincorporated totals exactly. Statewide 2002 net county M&O digest: $227,324,419,078."
+  - source_id: ga_dor_statistical_report_fy2003_cross_check
+    source_agency: Georgia Department of Revenue
+    source_title: "GA DOR FY2003 Statistical Report, Table 13 — Selected Tax Statistics and Estimates by County, Calendar Year 2002"
+    source_url: "https://dor.georgia.gov/document/report/2003-statistical-report/download"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "Cross-check document only; not parsed into the panel."
+    manual_download_required: false
+    local_path: data/raw/GA/2002/2003_statistical_report.pdf
+    sha256: "d906482e4a89b7d170476e656fe5f4ee35ca2d1e94dcda27339c771f703b3b84"
+    bytes: 975030
+    value_unit_in_source: thousands of dollars
+    unit_conversion_applied: none
+    notes: "Table 13 reports the STATE digest concept (state homestead exemptions only, excludes motor vehicles, in $1,000s) — a different digest from the county M&O digest. Reconciliation: workbook state-district net digest ($241.63B) - motor vehicles ($21.38B) + utilities ($10.29B) = $230.54B vs Table 13 statewide $230.67B, a 0.06% gap attributable to mobile-home treatment and post-appeal adjustments; Fulton utility value matches exactly. The two independent sources corroborate each other. A third file, data/raw/GA/2002/2002_statistical_report.pdf (sha256 1d64e56266c73f0c294b8067205a56e125691ce7eff35de8266b45caf3ff89fe), is the FY2002 report cover/letter only (no county digest tables) and is unused."

@@ -1,0 +1,47 @@
+state: WI
+sources:
+  - source_id: wi_dor_tvc_2002_equalized_values
+    source_agency: Wisconsin Department of Revenue
+    source_title: "Town, Village and City Taxes 2002 (TVC bulletin) — state full value of general property, assessment year 2002, county TOTAL rows"
+    source_url: "http://web.archive.org/web/20050315064933id_/http://www.dor.state.wi.us/pubs/slf/tvc02.pdf"
+    original_url: "http://www.dor.state.wi.us/pubs/slf/tvc02.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "pdftotext -layout parse of the 72 'TOTAL <NAME> COUNTY' rows: column 2 = 2002 Full Value (equalized value, TID-in), column 4 = 2002 Full Value Excluding TIF (TID-out). TOTAL STATE row used as the statewide-sum QA gate for both columns (0.5% tolerance); sha256 pinned in the extractor."
+    manual_download_required: false
+    local_path: data/raw/WI/2002/tvc02.pdf
+    sha256: "576e006e0b076f0bf490f801e0ea2a3e62bac611935827519a27db672092ae79"
+    bytes: 608171
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "County TOTAL rows are official county aggregates printed in the bulletin (not aggregated by this pipeline). Valuation date January 1, 2002; equalized values certified August 15, 2002. Printed statewide totals: TID-in $335,326,478,700; TID-out $327,322,310,980 (a school-apportionment page prints 327,322,310,987, a 7-dollar rounding artifact). The live revenue.wi.gov site hosts no 2002 files; recovered from the Wayback Machine with the original filename."
+  - source_id: wi_dor_news_release_2002_cross_check
+    source_agency: Wisconsin Department of Revenue
+    source_title: "DOR news release, Aug 15, 2002 — 'State Equalized Values Up 7.3%' (class table, county rankings with all 72 counties' 2001/2002 equalized values, 1959-2002 history)"
+    source_url: "http://web.archive.org/web/20020823214828id_/http://www.dor.state.wi.us/news/020815pr.html"
+    source_type: official_agency_news_release
+    source_granularity: county_aggregate
+    years_attempted: "2001-2002"
+    extraction_method: "Cross-check document only; not parsed into the panel."
+    manual_download_required: false
+    local_path: data/raw/WI/2002/020815pr.html
+    sha256: "d5d26534ed826b4039bb984e9fb6d17d3e082733e6fedb6e7999ff1b13f3bc39"
+    bytes: 53692
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Independent county-level backup of the TID-in equalized values: statewide $335,326,478,700 and county figures (e.g. Milwaukee $44,279,623,800, Adams $1,530,906,400) match the TVC bulletin exactly."
+  - source_id: wi_dor_equalization_reports_2002_verification
+    source_agency: Wisconsin Department of Revenue, Bureau of Equalization
+    source_title: "Per-county 2002 verification set: apportionment reports ('2002 Equalized Value Reduced by TID Value Increment' — Adams, Milwaukee), Statements of Equalized Values (Adams, Milwaukee), TIF Value Limitation Report 2002"
+    source_url: "Wayback id_ captures under dor.state.wi.us/equ/ and /equ/2002/ (02eqada.pdf 20060927081911, 02eqmil.pdf 20060927081944, 02strada.pdf 20030411052918, 02strmil.pdf 20030623151217, 02tifval.pdf 20060927084255)"
+    source_type: official_agency_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "Verification documents only; not parsed into the panel."
+    manual_download_required: false
+    local_path: "data/raw/WI/2002/02eqada.pdf ; 02eqmil.pdf ; 02strada.pdf ; 02strmil.pdf ; 02tifval.pdf"
+    sha256: "7611d87e7441... (02eqada) ; 365a653623ee... (02eqmil) ; 73b11c7d27ce... (02strada) ; ea18d859992e... (02strmil) ; eb23e0ee3d98... (02tifval) — first 12 hex chars; full hashes reproducible from the pinned files"
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Apportionment reports reproduce the TVC TID-out values exactly (Adams 1,518,121,600; Milwaukee 43,316,665,700). TIF report state total increment $8,003,656,620 vs TVC-implied $8,004,167,720 (0.006% gap, late corrections). The full 72-county sets of 02str/02eq reports are archived (CDX HTTP-200) if municipal detail is later needed. Also on disk, unused for the panel: wieqval.pdf (concept narrative, no numeric series) and longitudinal_taxvalues_20260316.xlsx (DPI school-district October certifications — different basis/timing, order-of-magnitude check only)."

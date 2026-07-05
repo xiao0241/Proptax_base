@@ -1,0 +1,28 @@
+state: GA
+values:
+  - official_term: Gross M&O Digest (county government district)
+    final_column_name: assessed_value
+    normalized_bucket: gross_assessed_base
+    tax_base_flag: false
+    market_proxy_flag: false
+    after_exemptions: false
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: "40 percent of fair market value (statutory)"
+    notes: "Derived in-source as net M&O digest + M&O exemptions (exmp-valAmt-mo); the identity holds exactly for all 159 district-0 rows in the pinned workbook. Includes motor vehicles, mobile homes, timber, heavy equipment, and utilities. 40%-of-FMV assessed value before exemptions."
+    source_id: ga_dor_digest_consolidated_2002
+  - official_term: Net M&O Digest (county government district; tax-valAmt-mo)
+    final_column_name: county_taxable_value
+    normalized_bucket: net_taxable_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: "40 percent of fair market value (statutory)"
+    notes: "The base county M&O mill rates actually apply to (net of state and local homestead/other exemptions) — the Brosy & Ferrero NAV concept. Note this is a 40%-of-FMV-scale base, not a market-value-scale concept. The school M&O digest (district 2) and state digest (district 1) are distinct bases with different exemption sets and are deliberately not mapped."
+    source_id: ga_dor_digest_consolidated_2002

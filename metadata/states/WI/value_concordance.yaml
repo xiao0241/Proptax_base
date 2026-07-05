@@ -1,0 +1,28 @@
+state: WI
+values:
+  - official_term: 2002 Full Value / Equalized Value (TID-in)
+    final_column_name: market_or_full_value
+    normalized_bucket: market_value_estimate
+    tax_base_flag: false
+    market_proxy_flag: true
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: false
+    assessment_ratio: full_market_value
+    notes: "DOR's estimate of the full market value of all taxable general property in the county (TVC bulletin column 2), including TID value increments. Manufacturing and other property in the general property tax; state-assessed utilities are outside the general property equalized value."
+    source_id: wi_dor_tvc_2002_equalized_values
+  - official_term: 2002 Full Value Excluding TIF / Equalized Value TID-out (Brosy & Ferrero NAV analog)
+    final_column_name: county_taxable_value
+    normalized_bucket: net_taxable_base
+    tax_base_flag: true
+    market_proxy_flag: true
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: false
+    assessment_ratio: full_market_value
+    notes: "Concept decision: WI county mill rates are levied on local ASSESSED values (varying assessment levels by municipality), but the county levy is apportioned across municipalities on the equalized value excluding TIF increments — per the bulletin, this full value 'is used for the apportionment of county and school levies'. TID-out equalized value is therefore the county-level tax base concept (the base the county levy effectively applies to at uniform full-value rates) and is carried as county_taxable_value. Unlike FL/CA/AZ/GA/MN it is a full-market-value-scale base with no exemption/ratio wedge versus market value; the TID-in vs TID-out gap is the only base adjustment."
+    source_id: wi_dor_tvc_2002_equalized_values

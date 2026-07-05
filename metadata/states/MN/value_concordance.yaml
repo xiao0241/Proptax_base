@@ -1,0 +1,41 @@
+state: MN
+values:
+  - official_term: Taxable Market Value, Real and Personal Property (assessment year 2002)
+    final_column_name: market_or_full_value
+    normalized_bucket: market_value_estimate
+    tax_base_flag: false
+    market_proxy_flag: true
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: full_market_value
+    notes: "Bulletin Table 28 Part B (payable 2003 volume): 2002 taxable market value of real and personal property — the market-value base before class rates convert it to net tax capacity. 'Taxable' market value reflects value exclusions (e.g. Green Acres, limited market value) relative to estimated market value."
+    source_id: mn_dor_ptbulletin_payable2003_assessment2002
+  - official_term: Total Net Tax Capacity Value (Table 32 column 1)
+    final_column_name: net_assessed_value
+    normalized_bucket: net_assessed_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: classified_class_rates_applied_to_taxable_market_value
+    notes: "Net tax capacity = statutory class rates applied to taxable market value, before TIF capture, fiscal-disparities contribution, and power-line deductions. A classified-rate base (~1-2% of market value), not a market-value-scale concept."
+    source_id: mn_dor_ptbulletin_payable2003_assessment2002
+  - official_term: Total Taxable Value / taxable net tax capacity (Table 32 column 5; Brosy & Ferrero NAV concept)
+    final_column_name: county_taxable_value
+    normalized_bucket: net_taxable_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: classified_class_rates_applied_to_taxable_market_value
+    notes: "Taxable net tax capacity = total net tax capacity minus TIF-captured value, fiscal-disparities contribution value, and 10% power-line value. Per the bulletin, 'taxable net tax capacity value is used in determining initial tax rates for local taxing jurisdictions' — the base local rates actually apply to, i.e. the Brosy & Ferrero NAV concept. Like net_assessed_value this is a classified-rate base (~1-2% of market value); use market_or_full_value for market-value-scale comparisons. The metro fiscal-disparities distribution value (Table 32 columns 6-7) is deliberately not added."
+    source_id: mn_dor_ptbulletin_payable2003_assessment2002

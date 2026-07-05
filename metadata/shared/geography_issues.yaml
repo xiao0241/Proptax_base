@@ -1,0 +1,17 @@
+boundary_change_check:
+  CA:
+    years_checked: "2000-2022"
+    finding: "No significant county creation, deletion, split, consolidation, or FIPS change affects California county panels during 2000-2022."
+    source: "U.S. Census Bureau county changes documentation."
+  FL:
+    years_checked: "2000-2022"
+    finding: "No significant county creation, deletion, split, consolidation, or FIPS change affects Florida county panels during 2000-2022. Dade County was renamed Miami-Dade before the analysis window; official older source tables may still print Dade."
+    source: "U.S. Census Bureau county changes documentation."
+aliases:
+  FL:
+    Dade: Miami-Dade
+    "Dade County": Miami-Dade
+    "Miami Dade": Miami-Dade
+    "Miami-Dade County": Miami-Dade
+    "Saint Johns": "St. Johns"
+    "Saint Lucie": "St. Lucie"

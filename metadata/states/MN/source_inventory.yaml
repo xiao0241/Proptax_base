@@ -1,0 +1,32 @@
+state: MN
+sources:
+  - source_id: mn_dor_ptbulletin_payable2003_assessment2002
+    source_agency: Minnesota Department of Revenue
+    source_title: "Property Taxes Levied in Minnesota: Summary Tables for Taxes Payable 2003 — Table 32 (Taxable Value Determination by County) and Table 28 (2002 Taxable Market Value of Real and Personal Property by County)"
+    source_url: "https://www.revenue.state.mn.us/sites/default/files/2011-11/ptbulletin_03.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "pdftotext -layout parse. Table 32 (PDF pp. 188-190): column 1 Total Net Tax Capacity Value and column 5 Total Taxable Value per county; Table 28 Part B (pp. 101-103): Real & Personal taxable market value total. Printed Statewide rows used as statewide-sum QA gates (0.5% tolerance; all three reconcile exactly). sha256 pinned in the extractor."
+    manual_download_required: false
+    local_path: data/raw/MN/2002/ptbulletin_03.pdf
+    sha256: "beca4023a9248b4f21c9060b7618aa8aed4a5ef6f77ce42a59487e7b75d8ae7d"
+    bytes: 3594895
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "MN timing: ASSESSMENT YEAR 2002 (valuation date Jan 2, 2002) determines taxes payable 2003, so the payable-2003 bulletin is the assessment-2002 volume — matching the calendar-2002 valuation convention of the other states. Printed statewide values: total net tax capacity 3,744,896,051; total taxable value 3,300,357,274; taxable market value (real & personal) 325,199,309,058. Bulletin county-name spellings Ottertail/Watowan/Wilken are aliased to Otter Tail/Watonwan/Wilkin. Known source bug (avoided): ptbulletin_03 Table 26 Part C's column headed 2002 actually contains payable-2001 figures — never source payable-year values from that table. Minor internal discrepancy in the source: Table 28 Part B statewide total differs from the bulletin's Chart 1 figure (325,205,340,827) by $6.03M (~0.002%, likely manufactured homes); the Table 28 Part B county detail is used as-is."
+  - source_id: mn_dor_ptbulletin_payable2002_reference
+    source_agency: Minnesota Department of Revenue
+    source_title: "Property Taxes Levied in Minnesota: Summary Tables for Taxes Payable 2002 (assessment year 2001) — reference/timing document"
+    source_url: "https://www.revenue.state.mn.us/sites/default/files/2011-11/ptbulletin_02.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2001-2002"
+    extraction_method: "Reference document only; not parsed into the panel (its Table 32 is assessment-year 2001 / payable 2002)."
+    manual_download_required: false
+    local_path: data/raw/MN/2002/ptbulletin_02.pdf
+    sha256: "cfff8c381afd59608445cb1a6a62c0365c93c957e2142e1bb7be895e3ab23cdd"
+    bytes: 1539230
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Kept to document the payable-year vs assessment-year convention (its payable-2002 Table 32 statewide total NTC is 3,408,514,473, the assessment-2001 base). Cross-check for the panel values: the payable-2004 bulletin (ptbulletin_04.pdf, same URL pattern) Table 26 Part C reprints the payable-2003 county total net tax capacity figures exactly (verified for Aitkin, Anoka, Hennepin, and the statewide total)."

@@ -1,0 +1,44 @@
+state: CA
+sources:
+  - source_id: ca_boe_net_assessed_values_table_10
+    source_agency: California State Board of Equalization
+    source_title: "Net Assessed Values, by County (Table 10)"
+    source_url: "https://www.boe.ca.gov/dataportal/dataset.htm?url=PropTaxAssessedNetStateCounty"
+    source_type: official_open_data_api
+    source_granularity: county_aggregate
+    years_attempted: "2000-2022"
+    extraction_method: "Programmatic OData download from BOE Data Portal endpoint Net_Assessed_Values_by_County."
+    manual_download_required: false
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "AssessmentYearFrom is used as the panel year. TotalAssessedValue is mapped to net_assessed_value. Endpoint carries county rows for 2013-2022 only; earlier years come from the annual-report PDF source below."
+  - source_id: ca_boe_annual_report_fy0102_table10_2002_03_roll
+    source_agency: California State Board of Equalization
+    source_title: "BOE Annual Report FY 2001-02, statistical appendix Table 10 - Net state- and county-assessed value of property subject to general property taxes on the secured and unsecured rolls, by county, 2002-03"
+    source_url: "https://web.archive.org/web/20040720164630if_/http://www.boe.ca.gov/annual/table10_02.pdf"
+    original_url: "http://www.boe.ca.gov/annual/table10_02.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "pdftotext -layout parse of the one-page Table 10 PDF; column 6 (total assessed value) per county; Totals row used as the statewide-sum QA gate (0.5% tolerance); sha256 pinned in the extractor."
+    manual_download_required: false
+    local_path: data/raw/CA/2002/table10_02.pdf
+    sha256: "095caa356e67b27d8b09bf73e3a44424695a41a2a85e027565560a9c3d4150e3"
+    bytes: 54035
+    value_unit_in_source: thousands of dollars
+    unit_conversion_applied: "multiplied by 1,000 to nominal dollars (also noted in reports/validation_summary.md extractor notes)"
+    notes: "The 2002-03 assessment roll (lien date Jan 1, 2002) is published in the FY 2001-02 Annual Report (table files suffixed _02); the FY 2002-03 report contains the 2003-04 roll. Net of 'all other' exemptions; includes homeowners' exemption value (footnote a) - the base the 1% rate applies to. Live boe.ca.gov archive starts at FY 2015-16, so the file was retrieved from the Wayback Machine. Printed statewide Totals: $2,755,772,185 thousand."
+  - source_id: ca_boe_annual_report_cross_checks_2002
+    source_agency: California State Board of Equalization
+    source_title: "Cross-check documents: FY 2002-03 Annual Report Table 10 (2003-04 roll, by county) and Table 4 (statewide summary 1993-94 to 2003-04 with revised 2002-03 figures)"
+    source_url: "https://web.archive.org/web/20040720171110if_/http://www.boe.ca.gov/annual/table10_03.pdf ; https://web.archive.org/web/20040720174857if_/http://www.boe.ca.gov/annual/table4_03.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: statewide_summary_by_county
+    years_attempted: "2002-2003"
+    extraction_method: "Reference documents for reconciliation only; not parsed into the panel."
+    manual_download_required: false
+    local_path: "data/raw/CA/2002/table10_03.pdf ; data/raw/CA/2002/table4_03.pdf"
+    sha256: "56088a08a07bf7b6fc2db6081d31f91e383529f4d3693d055c9f8605c05e88ed (table10_03) ; d19bb349019aeb6c4ce67b1067eda30457ed6fc19eb608e8f42bce962dbe2ab6 (table4_03)"
+    value_unit_in_source: "thousands of dollars (table10_03) ; millions of dollars (table4_03)"
+    unit_conversion_applied: none
+    notes: "Table 4 of the FY 2002-03 report shows the revised 2002-03 statewide net value (2,756,001 million USD vs 2,755,772 million USD as first published, +0.008 percent), confirming the published Table 10 figures within tolerance."

@@ -1,0 +1,50 @@
+state: FL
+sources:
+  - source_id: fl_dor_data_book_just_value
+    source_agency: Florida Department of Revenue
+    source_title: "Ad Valorem Valuation and Tax Data Book: Just Value Reports"
+    source_url: "https://floridarevenue.com/property/Pages/DataPortal_DataBook.aspx"
+    source_type: official_data_book
+    source_granularity: county_aggregate
+    years_attempted: "2000-2022"
+    extraction_method: "Official historical Data Book Excel files when available; official historical Data Book PDFs for 2000-2009."
+    manual_download_required: false
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Mapped to market_or_full_value from Just Value, Real, Personal, and Centrally Assessed Property."
+  - source_id: fl_dor_data_book_assessed_value
+    source_agency: Florida Department of Revenue
+    source_title: "Ad Valorem Valuation and Tax Data Book: Assessed Value Reports"
+    source_url: "https://floridarevenue.com/property/Pages/DataPortal_DataBook.aspx"
+    source_type: official_data_book
+    source_granularity: county_aggregate
+    years_attempted: "2010-2022"
+    extraction_method: "Official historical Data Book Excel files."
+    manual_download_required: false
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Older 2000-2009 PDFs do not expose a directly comparable Assessed Value report in v0, so assessed_value remains missing for those years."
+  - source_id: fl_dor_data_book_county_taxable_value
+    source_agency: Florida Department of Revenue
+    source_title: "Ad Valorem Valuation and Tax Data Book: Taxable Value Reports"
+    source_url: "https://floridarevenue.com/property/Pages/DataPortal_DataBook.aspx"
+    source_type: official_data_book
+    source_granularity: county_aggregate
+    years_attempted: "2000-2022"
+    extraction_method: "Official historical Data Book Excel files when available; official historical Data Book PDFs for 2000-2009."
+    manual_download_required: false
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Mapped to county_taxable_value from County Taxable Values, Real, Personal, and Centrally Assessed Property."
+  - source_id: fl_dor_data_book_school_taxable_value
+    source_agency: Florida Department of Revenue
+    source_title: "Ad Valorem Valuation and Tax Data Book: School Report"
+    source_url: "https://floridarevenue.com/property/Pages/DataPortal_DataBook.aspx"
+    source_type: official_data_book
+    source_granularity: county_aggregate
+    years_attempted: "2000-2022"
+    extraction_method: "Official historical Data Book Excel files when available; official historical Data Book PDFs for 2000-2009."
+    manual_download_required: false
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Mapped to school_taxable_value only from already aggregated county-level official summaries; district aggregation is never used."

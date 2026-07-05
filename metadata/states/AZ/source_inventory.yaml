@@ -1,0 +1,33 @@
+state: AZ
+sources:
+  - source_id: az_dor_annual_report_2002_table36_primary_nav
+    source_agency: Arizona Department of Revenue
+    source_title: "AZ DOR 2002 Annual Report, Table 36 — Tax Year 2002 Primary Property Tax Levies (Net Assessed Valuation by county)"
+    source_url: "https://azdor.gov/sites/default/files/2023-03/REPORTS_ANNUAL_2002_ASSETS_fy02_annual_report.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002"
+    extraction_method: "pdftotext -layout parse of Table 36 (PDF page 67); NET ASSESSED VALUATION is the first money column per county row; TOTAL STATE row used as the statewide-sum QA gate (0.5% tolerance); sha256 pinned in the extractor."
+    manual_download_required: false
+    local_path: data/raw/AZ/2002/REPORTS_ANNUAL_2002_ASSETS_fy02_annual_report.pdf
+    sha256: "c5cbee162bce01a07ce20725d3a00e80af5045ebb4282eb081f4ef6fde3b43be"
+    bytes: 402626
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Unlinked on the live azdor.gov annual-reports page (which lists FY2007+ only); found by probing the site's filename pattern. Primary NAV (limited values, net of exemptions) is the base primary operating levies apply to. Table 37 of the same report carries secondary NAV (full cash values, base for bonds/overrides/special districts; TY2002 statewide $36,805,206,912) — recorded here but not mapped to a panel column. Printed TY2002 primary TOTAL STATE: $34,854,285,601."
+  - source_id: az_dor_annual_report_2003_cross_check
+    source_agency: Arizona Department of Revenue
+    source_title: "AZ DOR 2003 Annual Report (Nov 2003) — reprints Tax Year 2002 primary and secondary levy tables"
+    source_url: "https://web.archive.org/web/20040601165336if_/http://www.revenue.state.az.us/annual2003.pdf"
+    original_url: "http://www.revenue.state.az.us/annual2003.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: county_aggregate
+    years_attempted: "2002-2003"
+    extraction_method: "Cross-check document only; not parsed into the panel. TY2002 net assessed valuation figures verified identical to the 2002 Annual Report in every county and the statewide total (figures current as of September 1, 2003 per its footnote)."
+    manual_download_required: false
+    local_path: data/raw/AZ/2002/annual2003.pdf
+    sha256: "673b4678540a9403c2611a3d348ba43eddd44d28672afba909f160078734452d"
+    bytes: 630104
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Independent second document (later vintage) reproducing the TY2002 county figures exactly; zero discrepancies across all 15 counties, primary and secondary."

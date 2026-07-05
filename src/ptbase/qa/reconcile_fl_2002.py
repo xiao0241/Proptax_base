@@ -1,0 +1,246 @@
+#!/usr/bin/env python3
+"""Reconcile the FL 2002 county taxable value against its official source PDF.
+
+The FL panel value ``county_taxable_value`` (2002) was extracted from the Florida
+Department of Revenue "Ad Valorem Valuation and Tax Data Book", 2002 edition,
+Table 27 (County Taxable Values) — the Brosy & Ferrero net-taxable-assessed-value
+(NAV) concept: the base to which mill rates apply, after the Save Our Homes cap
+and homestead exemptions.
+
+This script sha256-verifies the source PDF, independently re-parses Table 27, and
+reconciles per county against ``data/states/FL/fl_county_year_valuation_panel_*.csv``.
+It writes ``reports/reconcile_fl_2002.csv`` and ``reports/reconcile_fl_2002.md``
+and never modifies the panel. Its structure (sha256 pin -> independent re-parse ->
+per-county reconcile -> 0.5% flags -> report) is the QA template for every state's
+2002 extraction.
+
+Run from the repo root:
+    PYTHONPATH=src python3 -m ptbase.qa.reconcile_fl_2002
+"""
+from __future__ import annotations
+
+import hashlib
+import re
+import subprocess
+from datetime import date
+from pathlib import Path
+
+import pandas as pd
+
+from ..config import END_YEAR, ROOT, START_YEAR
+
+PANEL_PATH = ROOT / "data" / "states" / "FL" / f"fl_county_year_valuation_panel_{START_YEAR}_{END_YEAR}.csv"
+SOURCE_PDF = ROOT / "data" / "raw" / "FL" / "2002" / "02FLpropdata.pdf"
+EXPECTED_SHA256 = "7610080205323a3c1f604b9c86134d90c3628dc242c32953e775c961405ed30b"
+CANONICAL_URL = (
+    "https://floridarevenue.com/property/dataportal/Documents/"
+    "PTO Data Portal/Databook Historical Data/2000-2009DataBookFiles/02FLpropdata.pdf"
+)
+SOURCE_DOC_ID = "fl_dor_data_book_2002_table27_county_taxable_value"
+
+TAX_YEAR = 2002
+TABLE_NUMBER = "27"
+TOLERANCE = 0.005  # 0.5% per-county flag threshold (B&F QA gate)
+
+OUT_CSV = ROOT / "reports" / "reconcile_fl_2002.csv"
+OUT_MD = ROOT / "reports" / "reconcile_fl_2002.md"
+
+
+def sha256_of(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def pdf_text(path: Path) -> str:
+    """Extract layout-preserving text (matches the FL extractor)."""
+    return subprocess.run(
+        ["pdftotext", "-layout", str(path), "-"],
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    ).stdout
+
+
+def table_section(lines: list[str], table_number: str) -> list[str]:
+    """Return the lines of TABLE ``table_number`` (spanning its PAGE ONE/TWO)."""
+    header_re = re.compile(rf"\bTABLE\s+{re.escape(table_number)}\s*(?:,\s*PAGE|\s+PAGE)", re.IGNORECASE)
+    any_header_re = re.compile(r"\bTABLE\s+([0-9A-Z]+)\s*(?:,\s*PAGE|\s+PAGE)", re.IGNORECASE)
+    start = next((i for i, line in enumerate(lines) if header_re.search(line)), None)
+    if start is None:
+        raise ValueError(f"Could not find PDF table {table_number}")
+    end = len(lines)
+    for i in range(start + 1, len(lines)):
+        match = any_header_re.search(lines[i])
+        if match and match.group(1).upper() != table_number.upper():
+            end = i
+            break
+    return lines[start:end]
+
+
+def norm(name: str) -> str:
+    return re.sub(r"[^A-Za-z0-9]+", " ", name).strip().upper()
+
+
+def first_money(text: str) -> int | None:
+    """First comma-grouped or 4+ digit integer; the 2002 VALUE is the first money
+    column on each county row (STATUS is FINAL/REVISED, i.e. non-numeric)."""
+    match = re.search(r"\d{1,3}(?:,\d{3})+|\d{4,}", text)
+    return int(match.group().replace(",", "")) if match else None
+
+
+def parse_table27(text: str, panel_names: list[str]) -> tuple[dict[str, int], int | None]:
+    """Parse per-county 2002 taxable value and the printed *STATEWIDE* total."""
+    alias = {norm(name): name for name in panel_names}
+    alias["DADE"] = "Miami-Dade"  # the 2002 book prints DADE for Miami-Dade (12086)
+
+    lines = table_section(text.splitlines(), TABLE_NUMBER)
+    counties: dict[str, int] = {}
+    statewide: int | None = None
+    for line in lines:
+        if ":" not in line:
+            continue
+        label = norm(line.split(":", 1)[0])
+        if label == "STATEWIDE" and statewide is None:
+            statewide = first_money(line)
+            continue
+        canonical = alias.get(label)
+        if canonical is None or canonical in counties:
+            continue
+        value = first_money(line)
+        if value is not None:
+            counties[canonical] = value
+    return counties, statewide
+
+
+def build_report(summary: dict[str, object]) -> str:
+    flagged = summary["flagged_counties"]
+    flagged_txt = (
+        "None — all 67 counties within 0.5%."
+        if not flagged
+        else "\n".join(
+            f"  - {c}: panel={p:,.0f}, PDF={q:,.0f}, rel={r:+.4%}" for c, p, q, r in flagged
+        )
+    )
+    return f"""# Provenance & reconciliation — FL 2002 county taxable value
+
+Auto-generated by `src/ptbase/qa/reconcile_fl_2002.py`
+(reconciliation run: {summary['run_date']}).
+
+`county_taxable_value` (2002) — the base to which mill rates apply, after the
+Save Our Homes assessment cap and homestead exemptions. This is the Brosy &
+Ferrero **net taxable assessed value (NAV)** concept.
+
+## Source document
+
+| Field | Value |
+| --- | --- |
+| source_doc_id | `{SOURCE_DOC_ID}` |
+| title | Florida DOR Ad Valorem Valuation and Tax Data Book, 2002 edition |
+| table | Table {TABLE_NUMBER} — County Taxable Values (real, personal & centrally assessed) |
+| local_path | `{SOURCE_PDF.relative_to(ROOT)}` |
+| canonical_url | {CANONICAL_URL} |
+| bytes | {summary['bytes']:,} |
+| sha256 | `{summary['sha256']}` |
+| sha256_verified | {summary['sha256_verified']} (matches expected) |
+
+## Reconciliation vs. final panel
+
+Panel: `{PANEL_PATH.relative_to(ROOT)}`, `county_taxable_value` at `year == {TAX_YEAR}`.
+Independent re-parse of Table {TABLE_NUMBER} compared per county.
+
+| Metric | Value |
+| --- | --- |
+| counties parsed from PDF | {summary['n_parsed']} / 67 |
+| counties within 0.5% | {summary['n_within']} / 67 |
+| counties flagged (> 0.5%) | {summary['n_flagged']} |
+| max abs relative diff | {summary['max_rel']:.3e} |
+| statewide sum, panel | {summary['sum_panel']:,.0f} |
+| statewide sum, PDF Table {TABLE_NUMBER} | {summary['sum_pdf']:,.0f} |
+| *STATEWIDE* printed in Table {TABLE_NUMBER} | {summary['statewide_printed_txt']} |
+| panel-vs-PDF statewide ratio | {summary['statewide_ratio']:.9f} |
+
+Flagged counties:
+{flagged_txt}
+
+Per-county detail: `reports/reconcile_fl_2002.csv`.
+
+## Interpretation
+
+The panel value derives from the same official Table {TABLE_NUMBER}, so a near-exact
+match confirms the value is faithfully sourced and reproducible in-repo. Any
+flagged county would most likely reflect a FINAL-vs-REVISED status difference or a
+later-vintage revision (the 2003 book revises the statewide 2002 total by about
+-0.38%); such cases are listed, not silently reconciled.
+"""
+
+
+def main() -> None:
+    assert SOURCE_PDF.exists(), f"Source PDF not found: {SOURCE_PDF}"
+    digest = sha256_of(SOURCE_PDF)
+    assert digest == EXPECTED_SHA256, f"sha256 mismatch: {digest} != {EXPECTED_SHA256}"
+
+    panel = pd.read_csv(PANEL_PATH, dtype={"county_fips": "string"})
+    panel = (
+        panel.loc[panel["year"] == TAX_YEAR, ["county_fips", "county_name", "county_taxable_value"]]
+        .rename(columns={"county_taxable_value": "ntv_panel"})
+        .copy()
+    )
+    assert len(panel) == 67, f"expected 67 panel counties, got {len(panel)}"
+
+    counties, statewide_printed = parse_table27(pdf_text(SOURCE_PDF), panel["county_name"].tolist())
+    parsed_df = pd.DataFrame(
+        {"county_name": list(counties), "ntv_pdf_table27": list(counties.values())}
+    )
+
+    rec = panel.merge(parsed_df, on="county_name", how="left")
+    rec["abs_diff"] = rec["ntv_pdf_table27"] - rec["ntv_panel"]
+    rec["rel_diff"] = rec["abs_diff"] / rec["ntv_panel"]
+    rec["flag_gt_0p5pct"] = rec["rel_diff"].abs() > TOLERANCE
+    rec = rec.sort_values("county_fips").reset_index(drop=True)
+    OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
+    rec.to_csv(OUT_CSV, index=False)
+
+    n_parsed = int(rec["ntv_pdf_table27"].notna().sum())
+    n_flagged = int(rec["flag_gt_0p5pct"].sum())
+    max_rel = float(rec["rel_diff"].abs().max())
+    sum_panel = float(rec["ntv_panel"].sum())
+    sum_pdf = float(rec["ntv_pdf_table27"].sum())
+    flagged = [
+        (r.county_name, r.ntv_panel, r.ntv_pdf_table27, r.rel_diff)
+        for r in rec.itertuples()
+        if bool(r.flag_gt_0p5pct)
+    ]
+
+    summary = {
+        "run_date": date.today().isoformat(),
+        "bytes": SOURCE_PDF.stat().st_size,
+        "sha256": digest,
+        "sha256_verified": digest == EXPECTED_SHA256,
+        "n_parsed": n_parsed,
+        "n_within": n_parsed - n_flagged,
+        "n_flagged": n_flagged,
+        "max_rel": max_rel,
+        "sum_panel": sum_panel,
+        "sum_pdf": sum_pdf,
+        "statewide_printed_txt": f"{statewide_printed:,}" if statewide_printed else "not found",
+        "statewide_ratio": (sum_panel / sum_pdf) if sum_pdf else float("nan"),
+        "flagged_counties": flagged,
+    }
+    OUT_MD.write_text(build_report(summary), encoding="utf-8")
+
+    print(f"sha256 OK: {digest}")
+    print(f"counties parsed from Table {TABLE_NUMBER}: {n_parsed}/67")
+    print(f"max |rel diff| vs panel: {max_rel:.3e}  |  counties over 0.5%: {n_flagged}")
+    print(f"statewide  panel={sum_panel:,.0f}  PDF_T{TABLE_NUMBER}={sum_pdf:,.0f}  "
+          f"printed={summary['statewide_printed_txt']}")
+    print(f"wrote {OUT_CSV}")
+    print(f"wrote {OUT_MD}")
+    assert n_parsed == 67, f"parsed {n_parsed} counties from Table {TABLE_NUMBER}, expected 67"
+
+
+if __name__ == "__main__":
+    main()

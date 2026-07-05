@@ -1,0 +1,28 @@
+state: CA
+values:
+  - official_term: Total Assessed Value / Net Assessed Value
+    final_column_name: net_assessed_value
+    normalized_bucket: net_assessed_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: mixed_or_statutory
+    notes: "BOE Table 10 reports secured and unsecured state- and county-assessed property values by county; TotalAssessedValue is retained as CA net_assessed_value. 2013-2022 from the BOE Data Portal OData endpoint; 2002 from the FY 2001-02 Annual Report Table 10 PDF (2002-03 roll, printed in thousands of dollars, converted x1000 to nominal dollars). Net of 'all other' exemptions (veterans, church, religious, college, welfare, etc.); includes the homeowners' exemption value, which the state reimburses — this is the base the Prop 13 one-percent rate applies to for rate-setting."
+    source_id: ca_boe_net_assessed_values_table_10
+  - official_term: Net Assessed Value (Brosy & Ferrero NAV concept)
+    final_column_name: county_taxable_value
+    normalized_bucket: net_taxable_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: mixed_or_statutory
+    notes: "Analytic concordance: CA county_taxable_value is defined as the BOE Table 10 net assessed value (identical to net_assessed_value, not a distinct source concept) — the base the Prop 13 one-percent rate applies to, i.e. the Brosy & Ferrero net-taxable-assessed-value (NAV) concept. Kept as an explicit duplicate so the cross-state analytic column is populated for CA without collapsing any distinct base."
+    source_id: ca_boe_net_assessed_values_table_10

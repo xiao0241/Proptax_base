@@ -1,0 +1,54 @@
+state: FL
+values:
+  - official_term: Just Value
+    final_column_name: market_or_full_value
+    normalized_bucket: market_or_full_value
+    tax_base_flag: false
+    market_proxy_flag: true
+    after_exemptions: false
+    after_assessment_caps: false
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: not_applicable
+    notes: "Retained from the official county-level Just Value report/table."
+    source_id: fl_dor_data_book_just_value
+  - official_term: Assessed Value
+    final_column_name: assessed_value
+    normalized_bucket: assessed_base
+    tax_base_flag: false
+    market_proxy_flag: false
+    after_exemptions: false
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: mixed_or_statutory
+    notes: "Retained from official county-level Assessed Value Excel reports where available."
+    source_id: fl_dor_data_book_assessed_value
+  - official_term: County Taxable Value
+    final_column_name: county_taxable_value
+    normalized_bucket: taxable_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: mixed_or_statutory
+    notes: "Retained separately from school taxable value. It is never added to school_taxable_value."
+    source_id: fl_dor_data_book_county_taxable_value
+  - official_term: School Taxable Value
+    final_column_name: school_taxable_value
+    normalized_bucket: taxable_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: mixed_or_statutory
+    notes: "Retained only from already aggregated county-level official school taxable value summaries."
+    source_id: fl_dor_data_book_school_taxable_value

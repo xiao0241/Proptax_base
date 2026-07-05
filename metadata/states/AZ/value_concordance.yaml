@@ -1,0 +1,28 @@
+state: AZ
+values:
+  - official_term: Primary Net Assessed Valuation (Tax Year 2002)
+    final_column_name: net_assessed_value
+    normalized_bucket: net_assessed_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: statutory_class_ratios_applied_to_limited_values
+    notes: "AZ DOR Annual Report Table 36. Primary NAV = statutory class assessment ratios applied to limited property values, net of exemptions — the base primary (operating) levies of counties, cities, community colleges, and schools apply to. Secondary NAV (Table 37; full cash values, base for bonds/overrides/special districts) is a distinct base and is deliberately NOT mapped to any panel column."
+    source_id: az_dor_annual_report_2002_table36_primary_nav
+  - official_term: Primary Net Assessed Valuation (Brosy & Ferrero NAV concept)
+    final_column_name: county_taxable_value
+    normalized_bucket: net_taxable_base
+    tax_base_flag: true
+    market_proxy_flag: false
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: statutory_class_ratios_applied_to_limited_values
+    notes: "Analytic concordance: AZ county_taxable_value is defined as the primary net assessed valuation (identical to net_assessed_value, not a distinct source concept) — the base primary mill rates actually apply to, i.e. the Brosy & Ferrero NAV concept. Note this is an assessment-ratio-scaled base (class ratios ~1-25% of limited value), not a market-value-scale concept."
+    source_id: az_dor_annual_report_2002_table36_primary_nav
