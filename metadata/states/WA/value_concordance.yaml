@@ -1,0 +1,15 @@
+state: WA
+values:
+  - official_term: 2002 Assessed Value of All Taxable Property by County (Table 27, taxes due 2003 = assessment year 2002; Brosy & Ferrero NAV analog)
+    final_column_name: county_taxable_value
+    normalized_bucket: net_taxable_base
+    tax_base_flag: true
+    market_proxy_flag: true
+    after_exemptions: true
+    after_assessment_caps: true
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: full_market_value
+    notes: "WA DOR 'Property Tax Statistics' (2003 report) Table 27, 'Due 2003' column = the January 1, 2002 assessment roll (taxes payable 2003), i.e. assessment year 2002 (the payable-year publishing convention, as with MN). Washington assesses all taxable property at 100% of true and fair (market) value (RCW 84.40.030), so this total taxable assessed value is a full-market-value base and is the value on which county and other local levies are apportioned — the Brosy & Ferrero NAV concept for WA. Unlike FL/CA/AZ/GA/MN there is no statutory ratio or assessment-cap wedge versus market value; the ~90% assessment ratio shown in Table 31A is administrative reappraisal lag measured by the sales-ratio study, not a legal fractional-assessment ratio. Includes locally assessed real and personal property plus state-assessed utilities. Printed in thousands of dollars and converted x1000 to nominal dollars (the same unit convention flagged for CA 2002)."
+    source_id: wa_dor_property_tax_statistics_2003_table27

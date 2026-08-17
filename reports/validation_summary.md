@@ -130,6 +130,58 @@
 - 2021: 87
 - 2022: 87
 
+## TX County Count By Year
+
+- 2000: 254
+- 2001: 254
+- 2002: 254
+- 2003: 254
+- 2004: 254
+- 2005: 254
+- 2006: 254
+- 2007: 254
+- 2008: 254
+- 2009: 254
+- 2010: 254
+- 2011: 254
+- 2012: 254
+- 2013: 254
+- 2014: 254
+- 2015: 254
+- 2016: 254
+- 2017: 254
+- 2018: 254
+- 2019: 254
+- 2020: 254
+- 2021: 254
+- 2022: 254
+
+## WA County Count By Year
+
+- 2000: 39
+- 2001: 39
+- 2002: 39
+- 2003: 39
+- 2004: 39
+- 2005: 39
+- 2006: 39
+- 2007: 39
+- 2008: 39
+- 2009: 39
+- 2010: 39
+- 2011: 39
+- 2012: 39
+- 2013: 39
+- 2014: 39
+- 2015: 39
+- 2016: 39
+- 2017: 39
+- 2018: 39
+- 2019: 39
+- 2020: 39
+- 2021: 39
+- 2022: 39
+
 ## WI County Count By Year
 
 - 2000: 72
@@ -286,6 +338,58 @@
 - 2021: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
 - 2022: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
 
+## TX Nonmissing Valuation Counts By Year
+
+- 2000: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2001: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2002: market_or_full_value=254, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2003: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2004: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2005: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2006: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2007: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2008: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2009: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2010: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2011: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2012: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2013: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2014: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2015: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2016: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2017: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2018: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2019: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2020: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2021: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2022: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+
+## WA Nonmissing Valuation Counts By Year
+
+- 2000: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2001: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2002: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=39, school_taxable_value=0
+- 2003: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2004: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2005: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2006: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2007: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2008: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2009: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2010: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2011: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2012: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2013: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2014: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2015: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2016: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2017: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2018: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2019: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2020: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2021: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+- 2022: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
+
 ## WI Nonmissing Valuation Counts By Year
 
 - 2000: market_or_full_value=0, assessed_value=0, net_assessed_value=0, county_taxable_value=0, school_taxable_value=0
@@ -347,6 +451,8 @@
 - FL: No significant county creation, deletion, split, consolidation, or FIPS change affects the panel window. Dade/Miami-Dade alias handling is name-only and maps to FIPS 12086.
 - GA: No county creation, deletion, split, consolidation, or FIPS change affects the panel window (159 counties, unchanged since 1932).
 - MN: No county creation, deletion, split, consolidation, or FIPS change affects the panel window (87 counties, unchanged since 1922).
+- TX: No county creation, deletion, split, consolidation, or FIPS change affects the panel window (254 counties, unchanged since 1931).
+- WA: No county creation, deletion, split, consolidation, or FIPS change affects the panel window (39 counties, unchanged since 1911).
 - WI: No county creation, deletion, split, consolidation, or FIPS change affects the panel window (72 counties, unchanged since 1961).
 
 ## Source Rejections And Scope Confirmations
@@ -356,7 +462,7 @@
 - Confirmed no taxing-district, school-district, municipality, special-district, parcel, tax-rate-area, levy-area, or revenue-district sources were aggregated.
 - Confirmed no demographic variables were added.
 - Confirmed no combined multi-state final dataset was created.
-- Confirmed final panels (AZ, CA, FL, GA, MN, WI) have identical columns: True.
+- Confirmed final panels (AZ, CA, FL, GA, MN, TX, WA, WI) have identical columns: True.
 - Confirmed source metadata were excluded from the final CSVs.
 - Confirmed final valuation values are in nominal dollars; no unit conversion was applied.
 
@@ -374,6 +480,8 @@
 - MN 2002: Table 32 taxable value: 87 counties, sum 3,300,357,274 vs printed statewide 3,300,357,274 (rel diff 0.000000%).
 - MN 2002: Table 28B real & personal market value: 87 counties, sum 325,199,309,058 vs printed statewide 325,199,309,058 (rel diff 0.000000%).
 - MN 2002: values are for ASSESSMENT YEAR 2002 (taxes payable 2003 bulletin) — MN's Jan 2, 2002 valuation, matching the calendar-2002 valuation convention used for the other states. county_taxable_value is taxable net tax capacity (a classified-rate base, roughly 1-2% of market value — not a market-value-scale concept); market_or_full_value carries the 2002 taxable market value. Whole dollars; sha256 verified. Cross-check: the payable-2004 bulletin Table 26 Part C reprints the payable-2003 county total net tax capacity figures exactly.
+- TX 2002: Appendix C county total appraised (market) value, tax year 2002; 254 counties, sum 1,242,221,592,264 vs printed statewide Total Values 1,242,221,592,264 (rel diff 0.000000%); whole dollars; sha256 verified. CAD number 001-254 mapped to counties in ascending-FIPS (alphabetical) order. Cross-check: Appendix A appraisal-district Total Value (independent CAD-level totals).
+- WA 2002: Table 27 assessed value of all taxable property, assessment year 2002 (the 'Due 2003' column = January 1, 2002 roll, taxes payable 2003); 39 counties, sum 508,051,531,000 vs printed TOTAL 508,051,532,000 (rel diff 0.000000%); values x1000 from thousands of dollars; sha256 verified. Cross-checks: the 2003 report Table 27 PDF (identical) and the DOR '2002 County Comparison' report; Table 31A reports the sales-ratio actual value (real property) for the same counties.
 - WI 2002: TID-in equalized value: 72 counties, sum 335,326,478,700 vs printed TOTAL STATE 335,326,478,700 (rel diff 0.000000%).
 - WI 2002: TID-out equalized value: 72 counties, sum 327,322,310,980 vs printed TOTAL STATE 327,322,310,980 (rel diff 0.000000%).
 - WI 2002: whole dollars; sha256 verified. Cross-checks: DOR Aug 15, 2002 news release (data/raw/WI/2002/020815pr.html) lists all 72 counties' TID-in equalized values and the statewide total identically; per-county Bureau of Equalization apportionment reports (02eqada.pdf, 02eqmil.pdf) reproduce the TID-out values for Adams and Milwaukee exactly.

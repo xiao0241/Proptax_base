@@ -8,7 +8,7 @@ Table 27 (County Taxable Values) — the Brosy & Ferrero net-taxable-assessed-va
 and homestead exemptions.
 
 This script sha256-verifies the source PDF, independently re-parses Table 27, and
-reconciles per county against ``data/states/FL/fl_county_year_valuation_panel_*.csv``.
+reconciles per county against ``data/final/states/FL/fl_county_year_valuation_panel_*.csv``.
 It writes ``reports/reconcile_fl_2002.csv`` and ``reports/reconcile_fl_2002.md``
 and never modifies the panel. Its structure (sha256 pin -> independent re-parse ->
 per-county reconcile -> 0.5% flags -> report) is the QA template for every state's
@@ -29,7 +29,7 @@ import pandas as pd
 
 from ..config import END_YEAR, ROOT, START_YEAR
 
-PANEL_PATH = ROOT / "data" / "states" / "FL" / f"fl_county_year_valuation_panel_{START_YEAR}_{END_YEAR}.csv"
+PANEL_PATH = ROOT / "data" / "final" / "states" / "FL" / f"fl_county_year_valuation_panel_{START_YEAR}_{END_YEAR}.csv"
 SOURCE_PDF = ROOT / "data" / "raw" / "FL" / "2002" / "02FLpropdata.pdf"
 EXPECTED_SHA256 = "7610080205323a3c1f604b9c86134d90c3628dc242c32953e775c961405ed30b"
 CANONICAL_URL = (

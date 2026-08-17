@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: property-tax-base-mini
+Version: 0.1.0
+Summary: Mini ETL for official county-level property tax valuation panels for California and Florida.
+Requires-Python: >=3.11
+Requires-Dist: pandas>=2.0
+Requires-Dist: requests>=2.31
+Requires-Dist: openpyxl>=3.0
+Requires-Dist: xlrd>=2.0
+Requires-Dist: pydantic>=2.0
+Requires-Dist: pypdf>=4.0
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"

@@ -50,4 +50,4 @@ BANNED_FINAL_COLUMNS = {
     "education",
 }
 
-EXPECTED_COUNTIES = {"AZ": 15, "CA": 58, "FL": 67, "GA": 159, "MN": 87, "WI": 72}
+EXPECTED_COUNTIES = {"AZ": 15, "CA": 58, "FL": 67, "GA": 159, "MN": 87, "TX": 254, "WA": 39, "WI": 72}

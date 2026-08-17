@@ -1,0 +1,15 @@
+state: TX
+values:
+  - official_term: 2002 County Total Appraised Value (Appendix C "Total Values", tax year 2002)
+    final_column_name: market_or_full_value
+    normalized_bucket: market_value_estimate
+    tax_base_flag: false
+    market_proxy_flag: true
+    after_exemptions: false
+    after_assessment_caps: false
+    includes_real_property: true
+    includes_personal_property: true
+    includes_state_assessed_property: true
+    assessment_ratio: full_market_value
+    notes: "Texas Comptroller 'Annual Property Tax Report – Tax Year 2002', Appendix C (County Local Self Report Data). The 'Total Values' row is the sum of all property categories A–S on the county's tax roll. Texas appraises taxable property at 100% of market value (Tax Code 23.01), so this is the county's full-market-value base. Whole dollars; the report's printed statewide 'Total Values' (1,242,221,592,264) is the sum QA gate; cross-checked against Appendix A appraisal-district Total Value. Scope caveat: category D (1-d-1 agricultural acreage) is carried here at market value, whereas it is taxed at productivity value. The county's taxable value after homestead exemptions and productivity valuation is fund-specific (General Fund vs Farm-to-Market/Flood Control, each with its own deductions, rate, and levy in Appendix C) and is not published as a single county figure; deriving it from levy/rate is disallowed by repo policy (no valuation inferred from tax revenue or millage), so county_taxable_value is not carried for TX."
+    source_id: tx_cpa_annual_property_tax_report_2002_appendix_c

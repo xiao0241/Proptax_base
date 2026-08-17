@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sS --max-time 60 -o /private/tmp/claude-501/-Users-xiaoweiran-Desktop-Proptax-base/33557af8-1355-450e-827c-140051cf57d1/scratchpad/st53_wa_cou.txt \"https://www2.census.gov/geo/docs/reference/codes/files/st53_wa_cou.txt\")",
+      "Bash(curl -sS --max-time 60 -o /private/tmp/claude-501/-Users-xiaoweiran-Desktop-Proptax-base/33557af8-1355-450e-827c-140051cf57d1/scratchpad/st48_tx_cou.txt \"https://www2.census.gov/geo/docs/reference/codes/files/st48_tx_cou.txt\")",
+      "WebFetch(domain:dor.wa.gov)"
+    ]
+  }
+}

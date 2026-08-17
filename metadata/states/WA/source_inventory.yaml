@@ -1,0 +1,48 @@
+state: WA
+sources:
+  - source_id: wa_dor_property_tax_statistics_2003_table27
+    source_agency: Washington State Department of Revenue
+    source_title: "Property Tax Statistics 2003, Table 27 — Assessed Value of All Taxable Property by County, For Taxes Due in 2002 and 2003 ($000)"
+    source_url: "https://dor.wa.gov/sites/default/files/2022-03/Table27.xls"
+    original_url: "https://dor.wa.gov/about/statistics-reports/business-and-sales-taxes/tax-statistics/2003-tax-statistics"
+    source_type: official_annual_report_excel
+    source_granularity: statewide_summary_by_county
+    years_attempted: "2002"
+    extraction_method: "pandas/xlrd read of sheet 'Table 27'; column 0 = county, column 3 = 'Due 2003' (January 1, 2002 assessment roll, taxes payable 2003 = assessment year 2002). Values printed in thousands of dollars, converted x1000 to nominal dollars. The 'TOTAL' row is the statewide-sum QA gate (0.5% tolerance); sha256 pinned in the extractor."
+    manual_download_required: false
+    local_path: data/raw/WA/2002/Table27_2003.xls
+    sha256: "91338a220b7fcd9f062310466c8f23e9112c7091bbf01d93ee58aa5f2fd7a060"
+    bytes: 35328
+    value_unit_in_source: thousands of dollars
+    unit_conversion_applied: "x1000 (thousands of dollars -> nominal dollars)"
+    notes: "One row per county (39) plus a printed TOTAL. Statewide assessment-year-2002 total: 508,051,532 thousand = $508,051,532,000 (county sum 508,051,531 thousand, a 1-unit rounding artifact). The 'Due 2002' column (column 1) is the January 1, 2001 roll (assessment year 2001) and is deliberately not used. Assessed value of all taxable property = locally assessed real and personal property plus state-assessed utilities, at 100% of true and fair value (RCW 84.40.030)."
+  - source_id: wa_dor_property_tax_statistics_2003_table27_pdf_cross_check
+    source_agency: Washington State Department of Revenue
+    source_title: "Property Tax Statistics 2003, Table 27 (PDF rendering of the same table)"
+    source_url: "https://dor.wa.gov/sites/default/files/2022-03/Table27.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: statewide_summary_by_county
+    years_attempted: "2002"
+    extraction_method: "Cross-check document only; not parsed into the panel."
+    manual_download_required: false
+    local_path: data/raw/WA/2002/Table27_2003.pdf
+    sha256: "f97ce6cd52612f6530b40111dd72c2a230ad98acb797cacca60cf58e2fa757a5"
+    bytes: 38813
+    value_unit_in_source: thousands of dollars
+    unit_conversion_applied: none
+    notes: "PDF of the identical Table 27; reproduces every county's 'Due 2003' value and the statewide TOTAL exactly."
+  - source_id: wa_dor_county_comparison_2002_cross_check
+    source_agency: Washington State Department of Revenue
+    source_title: "A Comparison of County Assessor Statistics — 2002 County Comparison"
+    source_url: "https://dor.wa.gov/sites/default/files/2022-02/02_CountyComparisonReport.pdf"
+    source_type: official_agency_report_pdf
+    source_granularity: statewide_summary_by_county
+    years_attempted: "2002"
+    extraction_method: "Cross-check document only; not parsed into the panel."
+    manual_download_required: false
+    local_path: data/raw/WA/2002/CountyComparison_2002.pdf
+    sha256: "0c4ea686c10091c5fc995160564db7a26bc504befc06545261f8b94733e8f1dc"
+    bytes: 1777663
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Independent county-level assessor statistics for 2002. Table 31A ('Assessed and Actual Value of Taxable Real Property, Calendar Year 2002', data/raw/WA/2002/Table31A_2003.xls) is also on disk and reports the sales-ratio actual (market) value of real property by county — a market-scale reference, not carried into the panel because it is real-property-only rather than all taxable property."

@@ -22,7 +22,7 @@ Ferrero **net taxable assessed value (NAV)** concept.
 
 ## Reconciliation vs. final panel
 
-Panel: `data/states/FL/fl_county_year_valuation_panel_2000_2022.csv`, `county_taxable_value` at `year == 2002`.
+Panel: `data/final/states/FL/fl_county_year_valuation_panel_2000_2022.csv`, `county_taxable_value` at `year == 2002`.
 Independent re-parse of Table 27 compared per county.
 
 | Metric | Value |

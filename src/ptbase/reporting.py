@@ -13,6 +13,8 @@ BOUNDARY_NOTES = {
     "FL": "No significant county creation, deletion, split, consolidation, or FIPS change affects the panel window. Dade/Miami-Dade alias handling is name-only and maps to FIPS 12086.",
     "GA": "No county creation, deletion, split, consolidation, or FIPS change affects the panel window (159 counties, unchanged since 1932).",
     "MN": "No county creation, deletion, split, consolidation, or FIPS change affects the panel window (87 counties, unchanged since 1922).",
+    "TX": "No county creation, deletion, split, consolidation, or FIPS change affects the panel window (254 counties, unchanged since 1931).",
+    "WA": "No county creation, deletion, split, consolidation, or FIPS change affects the panel window (39 counties, unchanged since 1911).",
     "WI": "No county creation, deletion, split, consolidation, or FIPS change affects the panel window (72 counties, unchanged since 1961).",
 }
 

@@ -1,0 +1,34 @@
+state: TX
+sources:
+  - source_id: tx_cpa_annual_property_tax_report_2002_appendix_c
+    source_agency: Texas Comptroller of Public Accounts, Property Tax Division
+    source_title: "Annual Property Tax Report — Tax Year 2002, Appendix C: County Local Self Report Data"
+    source_url: "https://web.archive.org/web/20071122000751id_/http://www.window.state.tx.us/taxinfo/proptax/02annual/appc.pdf"
+    original_url: "http://www.window.state.tx.us/taxinfo/proptax/02annual/appc.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: statewide_summary_by_county
+    years_attempted: "2002"
+    extraction_method: "pdftotext -layout parse of the per-block county tables. Each block prints up to five CAD numbers (001-254, alphabetical) then a 'Total Values' row of matching appraised totals; CAD number N maps to the Nth county in ascending-FIPS (alphabetical) order (48001 Anderson … 48507 Zavala). The final 'Total Appraised Value' recap block supplies the statewide 'Total Values' used as the sum QA gate (0.5% tolerance); sha256 pinned in the extractor."
+    manual_download_required: false
+    local_path: data/raw/TX/2002/appc_county_2002.pdf
+    sha256: "0909866ee84d005d94743b7f19f258c7f7a00e4b72ddf09fd4b3421531b3f8d0"
+    bytes: 436820
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "254 county columns plus a statewide recap. Printed statewide Total Values (total appraised value, all categories A-S): $1,242,221,592,264, matched exactly by the sum of the 254 county Total Values. Recovered from the Wayback Machine (window.state.tx.us) because the Comptroller's current site publishes the biennial county value report (form 96-1728) only back to 2014-15. Appendix C is the county-taxing-unit self report; only its appraised Total Values (a county aggregate printed in the source) is used — no taxing-district, city (Appendix D), or special-district (Appendix E) figures are aggregated."
+  - source_id: tx_cpa_annual_property_tax_report_2002_appendix_a_cross_check
+    source_agency: Texas Comptroller of Public Accounts, Property Tax Division
+    source_title: "Annual Property Tax Report — Tax Year 2002, Appendix A: Appraisal District Local Self Report Data"
+    source_url: "https://web.archive.org/web/20071122000747id_/http://www.window.state.tx.us/taxinfo/proptax/02annual/appa.pdf"
+    original_url: "http://www.window.state.tx.us/taxinfo/proptax/02annual/appa.pdf"
+    source_type: official_annual_report_pdf
+    source_granularity: statewide_summary_by_county
+    years_attempted: "2002"
+    extraction_method: "Cross-check document only; not parsed into the panel."
+    manual_download_required: false
+    local_path: data/raw/TX/2002/appa_appraisal_district_2002.pdf
+    sha256: "e0108b49829edf3e22761bab1e226b751a9a41aed18ebde19493bbb5b023cfef"
+    bytes: 326627
+    value_unit_in_source: nominal dollars
+    unit_conversion_applied: none
+    notes: "Independent appraisal-district (CAD) Total Value per county — the same 254 counties on the appraisal-roll basis rather than the county-taxing-unit basis (e.g. Anderson CAD Total Value 2,327,479,753 vs county Total Values 2,267,874,301). Order-of-magnitude/second-source confirmation of the Appendix C county appraised values."
